@@ -2,11 +2,15 @@ from jinja2 import StrictUndefined
 from flask import Flask, jsonify, render_template, request, flash, redirect, session
 from flask_debugtoolbar import DebugToolbarExtension
 from model_project import connect_to_db, db, User, Listings, Rental_Records
+
+import sendgrid
+import os
+from sendgrid.helpers.mail import *
+
+ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg', 'gif'])
 import json
 import bcrypt
 import re
-
-
 
 app = Flask(__name__)
 app.secret_key = "ABC"
@@ -300,10 +304,12 @@ def listing_detail(listing_id):
     user_id = session.get("user")
     print user_id
     user = User.query.filter_by(user_id=user_id).first()
+
     user_photo = "/static/img/" + str(user.user_photo)
 
     listing = Listings.query.get(int(listing_id))
     listing_owner_photo = "/static/img/" + str(listing.owner_picture)
+
     listing_image= "/static/img/" + str(listing.listing_photo)
   
 
@@ -392,77 +398,140 @@ def find_all_listings(height, width, low_price, high_price):
 
 
 
-
-
-
-# @app.route('/send_text.json', methods=["POST"])
-# def send_text():
-#     """Creates a new message in the MessagesToSend table"""
-
-#     user = User.query.get(session["user"])
-#     if user.phone:
-#         time = request.form.get("cleaningtime")
-#         message = MessageToSend(user_id=session["user"], time= time)
-#         db.session.add(message)
-#         db.session.commit()
-#         result = {'info_message': 'True',
-#                    'number': user.phone}
-#         return jsonify(result)
-#     else:
-#         flash("You must have a phone number to get texts")
-#         result = {'info_message': 'False'}
-#         return jsonify(result)
-
-
-
-
-
-
-
 #######################################################################################################
 
+@app.route('/emailDetail.json' , methods=['POST'])
+def email_detail():
+    """Show map of SF with filters."""
 
-# @app.route('/process_booking', methods=['POST'])
-# def process_booking():
-#     """Process new booking to DB."""
+    rent_price = int(request.form.get('rent_price'))
+    start_month = request.form.get('startMonth')
+    end_month = request.form.get('endMonth')
+    ad_height = float(request.form.get('adHeight'))
+    ad_width = float(request.form.get('adWidth'))
+    requester_name = request.form.get('requesterName')
+    requester_phone = request.form.get('requesterPhone')
+    requester_email = request.form.get('requesterEmail')
+    requester_comment = request.form.get('requesterComment')
+    listing_email = request.form.get('listingEmail')
+    listing_name = request.form.get('listingName')
+    listing_business = request.form.get('listingBusiness')
 
-#     # Get form variables
-#     start_date = request.form.get("start_date")
-#     end_date = request.form.get("end_date")
-#     ad_height = request.form.get("ad_height")
-#     ad_width = request.form.get("ad_width")
-#     price = request.form.get("result")
-   
-#     is_active = True
-#     user_id = session.get("user")
+    # Retrieves listings from db_queries
+    email = request_email(rent_price, start_month, end_month,ad_height, ad_width, requester_name, requester_phone, requester_email, requester_comment, listing_name, listing_email, listing_business)
+    # confirm = confirm_request_email(rent_price, start_month, end_month,ad_height, ad_width, requester_name, requester_phone, requester_email, requester_comment, listing_name, listing_email, listing_business)
+    
+    # record = Rental_Records(listing_id=listing_business, rental_id=requester_name, start_date=start_month, end_date=end_month, total_price=rent_price)
+    # requester_name, requester_phone, requester_email, requester_comment, listing_name, listing_email, listing_business
+
+    # db.session.add(record) 
+    # db.session.commit()
 
 
-#     record = Rental_Records(user_id=user_id, start_date=start_date, end_date=end_date, 
-#                 ad_height=ad_height, price=price, is_active=is_active)
+    return jsonify(email)
 
-#     db.session.add(record)
+
+
+def request_email(rent_price, start_month, end_month,ad_height, ad_width, requester_name, requester_phone, requester_email, requester_comment, listing_name, listing_email, listing_business):
+    print listing_email
+    print listing_business
+
+    sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+    from_email = Email("dvmazuera@gmail.com")
+    to_email = Email("dvmcoupons@gmail.com")
+    subject = "Your Listing:'" + listing_business + "' has Received a Request!"
+    # content = Content("text/html", "<p> Hello " +listing_name + "! </p><br><p>"+ requester_name + " has shown interest in your listing! He would like to rent " + ad_height + "ft by " + ad_width + "ft of your available listing space for the months: " + start_month + " through " + end_month + " for a grand total of: $" + rent_price + ".</p><br><br><p>Here is a short comment from him: "+ requester_comment +" </p> CLICK <a href=\"" + link + "\">here</a> to see the info on your listing page and CONFIRM or DECLINE this request.</p><br><br><p>-AdCollab Marketing Team</p>")
+    content = Content("text/html", "Hello ")
+    mail = Mail(from_email, subject, to_email, content)
+    response = sg.client.mail.send.post(request_body=mail.get())
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
+
+
+
+
+#     sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+#     from_email = Email("dvmazuera@gmail.com")
+#     to_email = Email("dvmcoupons@gmail.com")
+#     subject = "Sending with SendGrid is Fun"
+#     content = Content("text/plain", "and easy to do anywhere, even with Python")
+#     mail = Mail(from_email, subject, to_email, content)
+#     response = sg.client.mail.send.post(request_body=mail.get())
+#     print(response.status_code)
+#     print(response.body)
+#     print(response.headers)
+
+
+
+
+
+
+# def confirm_request_email(rent_price, start_month, end_month,ad_height, ad_width, requester_name, requester_phone, requester_email, requester_comment, listing_name, listing_email, listing_business):
+#     sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SENDGRID_API_KEY'))
+#     from_email = Email("request@adcollab.com")
+#     to_email = Email("dvmcoupons@gmail.com")
+#     subject = "Your request has been sent for'" + listing_business + "'! - AdCollab"
+#     # content = Content("text/html", "<p> Hello " +requester_name + "! </p><br><p> This email is to confirm that"+ listing_name + "from"+ listing_business+" has received your request email!</p><br><p> The email shows the following: </p><br><p>'"+ requester_name + "would like to rent " + ad_height + "ft by " + ad_width + "ft of the available listing space for the months: " + start_month + " through " + end_month + " for a grand total of: $" + rent_price + ".</p><br><br><p>Here is a short comment from him: "+ requester_comment +" </p> Once she has CONFIRMED or DECLINED this request, we will notify you through email. </p><br><br><p>-AdCollab Marketing Team</p>")
+#     content = Content("text/html", "Hello ")
+#     mail = Mail(from_email, subject, to_email, content)
+#     response = sg.client.mail.send.post(request_body=mail.get())
+#     response = sg.client.mail.send.post(request_body=mail.get())
+#     print(response.status_code)
+#     print(response.body)
+#     print(response.headers)
+
+
+
+
+
+# @app.route('/submit-request/<listing_id>.json', methods=['POST'])
+# def submit_request(listing_id):
+#     """make trie viewable by another user"""
+
+#     share_email = request.form.get("email")
+#     total_price = request.args.get('rent-price')
+#     start_date = request.args.get('startMonth')
+#     end_date = request.args.get('endMonth')
+#     ad_height = float(request.args.get('adHeight'))
+#     ad_width = float(request.args.get('adWidth'))
+#     requester_id = session['user']
+#     listing_business = Listing.query.get(listing_id).business
+
+#     requester_name = request.args.get('userName')
+#     user_comment = request.args.get('userComment')   
+#     listing_link = 'http://localhost:5000/listing/' + listing_id
+
+
+#     owner = User.query.filter_by(email=share_email).all()
+#     owner_id= owner.id
+#     record = Rental_Records(listing_id=listing_id, requester_id=requester_id, owner_id=owner_id, start_date=start_date, end_date=end_date, 
+#                 ad_height=ad_height, ad_width=ad_width, total_price=total_price, is_active=is_active)
+
+#     db.session.add(record) 
 #     db.session.commit()
 
-#     flash("Booking confirmed!!!")
+#     request_email(share_email, listing_business, requester_name, total_price, start_date, end_date, ad_height, ad_width, user_comment, listing_link)
+    
+#     flash("Booking Request Emailed!!!")
 
 #     return redirect("/book_listing")
 
+  
 
 
 
 
 
 
+@app.route("/book_listing")
+def book_listings():
+    """Show list of listings."""
 
+    rentals = Rental_Records.query.order_by('rental_id').all()
 
-# @app.route("/book_listing")
-# def book_listings():
-#     """Show list of listings."""
-
-#     rentals = Rental_Records.query.order_by('rental_id').all()
-
-#     return render_template("use_rental_confirmation.html",
-#                             rentals=rentals)
+    return render_template("use_rental_confirmation.html",
+                            rentals=rentals)
 
 
 

@@ -120,81 +120,98 @@
 
 
 
-
 <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modal">Request This Listing!</button>
+<button id="email-modal-button" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modal">Request This Listing!</button>
+
 <!-- Modal -->
 <div id="Modal" class="modal fade" role="dialog">
   <div class="modal-dialog">
+
     <!-- Modal content-->
     <div class="modal-submit-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Review Below</h4>
-        </div>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Review Below</h4>
+      </div>
+      <div class="modal-body">
+        <p> You are just one step away from booking your ad listing! Next we will be contacting the business owner to confirm you're request. The dates selected by your request will remain blocked until a confirmation/decline is posted on our site.</p>
+        <p> An email will be sent to {{ listing.business }} with the following information. Please review and double check that all parameters have been correctly selected.</p>
+        <h5> Request Detail: </h5>
+        <li id="modal-rent-price"> Total Booking Price: </li>
+        <li id="modal-start-month"> Start Month: </li>
+        <li id="modal-end-month"> End Month: </li>
+        <li id="modal-ad-height"> Ad Height: </li>
+        <li id="modal-ad-width"> Ad Width: </li>
+        <h5> User Requesting Listing</h5>
+        <p><img id="requester-photo" src='{{ user_photo }}' width="50%" height="50%"/> </p>
+        <li id="requester-name"> {{ user.first_name }} {{ user.last_name }}</li>
+        <li id="requester-phone"> {{ user.phone }}</li>
+        <li id="requester-email"> {{ user.email }}</li>
+        <h5> Optional area to comment: Use AdCollab's default message or customize your own!</h5>
+        <textarea name="comment" id="requester-comment" form="usrform">Hi! My name is {{user.first_name}} {{user.last_name}} and I am interested in booking your ad listing! </textarea>
+          <li id="listing_email" hidden> dvmcoupons@gmail.com</li>
+          <li id="listing_business" hidden> {{ listing.business }}</li>
+          <li id="listing_name" hidden>Sheyna</li>
 
-        <div class="modal-body">
-          <p> You are just one step away from booking your ad listing! Next we will be contacting the business owner to confirm you're request. The dates selected by your request will remain blocked until a confirmation/decline is posted on our site.</p>
-          <p> An email will be sent to {{ listing.business }} with the following information. Please review and double check that all parameters have been correctly selected.</p>
-          <h5> Request Detail </h5>
-          <li > Total Booking Price: <span id="modal-total" >&nbsp;</span></li>
-          <li> Start Month: </li> 
-          <li> End Month: </li>
-          <li> Ad Height: </li>
-          <li> Ad Width: </li>
-          <h5> User Requesting Listing</h5>
-          <p><img src='{{ user_photo }}' width="50%" height="50%"/> </p>
-          <li> {{ user.first_name }} {{ user.last_name }}</li>
-          <li> {{ user.phone }}</li>
-          <li> {{ user.email }}</li>
-          <h5> Optional area to comment:</h5>
-          <textarea name="comment" form="usrform">Enter text here...</textarea>
-        </div>
+      </div>
+      <div class="modal-footer"> <h4>Send your request!</h4>
+        <button type="button" id="email-submit-button" class="btn btn-default" data-dismiss="modal">Submit</button>
+      </div>
 
-        <div class="form-content">
-            <span class="close" id="closeShareTrip">&times;</span>
-            <h2>Share Trip</h2>
-              <form id="share_form" method="POST">Who would you like to share this trip with?<br>
-                <input id="shareEmail" placeholder="Email Address" type="text" name="shareEmail">
-                <input type="submit" id="share_submit_button">
-              </form>
-              <form id="invite_form" action="/invite-user" method="POST" hidden>This user does not exist would you like to invite them to join SOJOURNAL?<br>
-                <input id="inviteEmail" placeholder="Email Address" type="text" name="inviteEmail">
-                <input type="submit" id="invite_submit_button">
-              </form>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Submit Request</button>
-        </div>
-
+      
     </div>
+
   </div>
 </div>
 
-<!-- user.user_id
-user.email
-user.phone -->
+
+<script>
+
+
+  $("#email-modal-button").on('click', function(){
+            var rent_price = $('#rent-price-result').text()
+            var startMonth = $('#start_date option:selected').text()
+            var endMonth = $('#end_date option:selected').text()
+            var adHeight = $('#ad-height').val()
+            var adWidth = $('#ad-width').val()
+
+            $("#modal-rent-price").html("Rent Total Price: $"+ rent_price)
+            $("#modal-start-month").html("Start Date: "+ startMonth)
+            $("#modal-end-month").html("End Date: "+ endMonth)
+            $("#modal-ad-height").html("Ad Height: "+adHeight+"ft")
+            $("#modal-ad-width").html("Ad Width: "+adWidth+"ft")
+  });
+
+
+$("#email-submit-button").on('click', function(){
+            var emailDetail = {
+            "rent_price": $('#rent-price-result').text(),
+            "startMonth": $('#start_date option:selected').text(),
+            "endMonth": $('#end_date option:selected').text(),
+            "adHeight": $('#ad-height').val(),
+            "adWidth": $('#ad-width').val(),
+            "requesterName": $('#requester-name').text(),
+            "requesterPhone": $('#requester-phone').text(),
+            "requesterEmail": $('#requester-email').text(),
+            "requesterComment": $('#requester-comment').text(),
+            "listingEmail": $('listing-email').text(),
+            "listingName": $('listing-name').text(),
+            "listingBusiness": $('listing-email').text()
+          }
+          console.log(emailDetail)
+
+          $.post('/emailDetail.json', emailDetail, function(email){
+              console.log("You did it!")
+              alert("Listing Request Sent! Check Your Email for Confirmation.")
+          });
+
+});
 
 
 
+</script>
 
 
-<!-- 
-
--if text -
-
-    <div id="Booking"></div>
-
-    {% if 'login' in session %}
-        <form id="send_text">
-            <input name="request_booking" id="request_booking" type="hidden">
-            <input type="submit" name="submit" value="Request Booking">
-        </form>
-    {% else %}
-        <a href='/' id="logintextbtn"><button>Login to Request Booking</button></a>
-    {% endif %}
-     -->
 
 
 
@@ -203,6 +220,7 @@ user.phone -->
 
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="/static/js/booking.js"></script>
+<!-- <script src="/static/js/ad_modal.js"></script> -->
 <!-- <script src="/static/js/text.js"></script> -->
 
 {% endblock %}
