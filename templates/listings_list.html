@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+  <h1>Listings</h1>
+    <ul>
+      {% for listings in listings %}
+          <li>
+              <a href="/listings/{{ listings.business }}">
+                {{ listings.business }} ({{ listings.business }})
+              </a>
+          </li>
+      {% endfor %}
+    </ul>
+
+    {% endblock %}

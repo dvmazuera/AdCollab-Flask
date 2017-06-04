@@ -1,0 +1,67 @@
+
+.img {
+    position: relative;
+    float: left;
+    width:  100px;
+    height: 100px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+
+#rent-price-result {
+  display: inline-block;
+  padding: 0.30em 0;
+  border: solid 2px red;
+  margin-right: 1em;
+  width: 10em;
+  text-align: center;
+}
+
+
+h1, h2, h3, .navbar-brand { font-family: "Roboto", sans-serif; }
+
+p { 
+  font-family: "Roboto", sans-serif;
+  width: 50%;
+  margin: 1em;
+  padding: 1em; 
+}
+
+
+
+#container{
+    width: 1020px;
+    height: 600px;
+}
+
+
+#main_image{
+    width:680px;
+    height:350px;
+    background: url('/static/img/Shenas_thrift_wall.jpg');
+}
+
+ .dragme{
+      position:relative;
+      width: 120px;
+      height: 100px;
+      cursor: move;
+      border: 1px solid gray;
+      z-index: 0;
+    }
+  #draggable {
+      background-color: #ccc;
+      border: 1px solid #000;
+    }
+
+.modal-content{
+    width:682px;
+    height:530px;
+}
+
+
+
+
+

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>OOH Marketing</h1>
+
+	<div id="add_user">
+        <h1>Add User Form</h1>
+        <form action="/process_new_user" method="POST">
+            First Name<br>
+            <input type="text" name="fname" required><br>
+
+            Last Name<br>
+            <input type="text" name="lname" required><br>
+
+            Email<br>
+            <input type="text" name="email" required><br>
+
+            Password<br>
+            <input type="text" name="password" required><br>
+
+            Phone<br>
+            <input type="text" name="phone" required><br>
+
+            Zipcode<br>
+            <input type="text" name="zipcode" required><br>
+
+            Photo<br>
+            <input type="text" name="photo"><br>
+
+            Description<br>
+            <input type="text" name="description">
+
+            <br>
+            <br>
+            <input type="submit" name="add_user">
+        </form>
+	</div>
+
+
+{% endblock %}

@@ -1,0 +1,208 @@
+<!-- this will be a generic page that will be populated with whatever listing_id infor the user clicks on.... -->
+
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<a href="/account_info">{{ user.email }} {{ user.user_id }}</a> <br>
+  <h1>Listing Info</h1>
+
+
+
+<img src='{{ listing_owner_photo }}' width="50%" height="50%"/>
+<br>
+<p>
+<img src='{{ listing_image }}' width="50%" height="50%" /></p>
+
+
+<div> 
+  <h2>Basic Info: </h2>
+
+      Business Name:<br>{{ listing.business }}<br><br>
+
+      Phone:<br>{{ listing.phone }}<br><br>
+
+      Address:<br>{{ listing.address }}<br><br>
+
+      Advertisement Space Dimensions:<br>
+      Height: {{ listing.height_max }}<br>
+      Width: {{ listing.width_max }}<br><br>
+
+      Price<br>
+      $ {{ listing.price }} / month<br><br>
+
+</div>
+
+
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Click to See Listing Space </button>
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content"> 
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">{{ listing.business}}</h4>
+          </div>
+          <div id="container">
+              <div id="main_image" class="listing">"Drag the Image Below"</div>
+                  <img src="/static/img/flower_shop_SIGN.jpg" alt="drag-and-drop image script" 
+                   title="drag-and-drop image script" class="dragme">
+              </div>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+<!-- SOMEWHERE  on this page there will be a CALENDAR API that show availability -->
+
+
+
+	<div>
+        <h1> Select This Listing</h1>
+        <form action="/process_booking" id="calendar-form" method="POST">
+
+              Start Date:
+                <select name="start_date" id="start_date">
+                  <option value="may17">May 2017</option>
+                  <option value="june17">June 2017</option>
+                  <option value="july17">July 2017</option>
+                  <option value="august17">August 2017</option>
+                  <option value="september17">September 2017</option>
+                  <option value="october17"17>October 2017</option>
+                  <option value="november17">November 2017</option>
+                  <option value="december17">December 2017</option>
+                  <option value="january18">January 2018</option>
+                </select>
+
+
+              End Date:
+                <select name="end_date" id="end_date">
+                   <option value="july17">July 2017</option>
+                  <option value="august17">August 2017</option>
+                  <option value="september17">September 2017</option>
+                  <option value="october17"17>October 2017</option>
+                  <option value="november17">November 2017</option>
+                  <option value="december17">December 2017</option>
+                  <option value="january18">January 2018</option>
+                  <option value="february18">February 2018</option>
+                  <option value="march18">March 2018</option>
+                  <option value="april18">April 2018</option>
+                  <option value="may18">May 2018</option>
+                </select>
+
+
+                <br> Price<br>
+            $ {{ listing.price }} / month<br><br>
+
+                <input type="submit" id="calc-months" class="btn btn-primary input-sm" value="Calculate"><br><br>
+                <label>Total Price for months selected: $  </label> <span id="rent-price-result" data-listing-price="{{ listing.price }}" name="rent-price-result">&nbsp;</span>
+
+
+    </form>
+            <br>
+
+            <h2> Ad Dimensions: </h2> <br>
+            <label> Height:<input type="text" size="5" name="ad_height" id="ad-height" value="5" required>ft </label> <br>
+            <label> Width:<input type="text" size="5" name="ad_width" id="ad-width" value= "4" required>ft </label> <br> <br>
+
+
+      </form>
+	</div>
+
+
+
+
+
+<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modal">Request This Listing!</button>
+<!-- Modal -->
+<div id="Modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-submit-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Review Below</h4>
+        </div>
+
+        <div class="modal-body">
+          <p> You are just one step away from booking your ad listing! Next we will be contacting the business owner to confirm you're request. The dates selected by your request will remain blocked until a confirmation/decline is posted on our site.</p>
+          <p> An email will be sent to {{ listing.business }} with the following information. Please review and double check that all parameters have been correctly selected.</p>
+          <h5> Request Detail </h5>
+          <li > Total Booking Price: <span id="modal-total" >&nbsp;</span></li>
+          <li> Start Month: </li> 
+          <li> End Month: </li>
+          <li> Ad Height: </li>
+          <li> Ad Width: </li>
+          <h5> User Requesting Listing</h5>
+          <p><img src='{{ user_photo }}' width="50%" height="50%"/> </p>
+          <li> {{ user.first_name }} {{ user.last_name }}</li>
+          <li> {{ user.phone }}</li>
+          <li> {{ user.email }}</li>
+          <h5> Optional area to comment:</h5>
+          <textarea name="comment" form="usrform">Enter text here...</textarea>
+        </div>
+
+        <div class="form-content">
+            <span class="close" id="closeShareTrip">&times;</span>
+            <h2>Share Trip</h2>
+              <form id="share_form" method="POST">Who would you like to share this trip with?<br>
+                <input id="shareEmail" placeholder="Email Address" type="text" name="shareEmail">
+                <input type="submit" id="share_submit_button">
+              </form>
+              <form id="invite_form" action="/invite-user" method="POST" hidden>This user does not exist would you like to invite them to join SOJOURNAL?<br>
+                <input id="inviteEmail" placeholder="Email Address" type="text" name="inviteEmail">
+                <input type="submit" id="invite_submit_button">
+              </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Submit Request</button>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- user.user_id
+user.email
+user.phone -->
+
+
+
+
+
+<!-- 
+
+-if text -
+
+    <div id="Booking"></div>
+
+    {% if 'login' in session %}
+        <form id="send_text">
+            <input name="request_booking" id="request_booking" type="hidden">
+            <input type="submit" name="submit" value="Request Booking">
+        </form>
+    {% else %}
+        <a href='/' id="logintextbtn"><button>Login to Request Booking</button></a>
+    {% endif %}
+     -->
+
+
+
+
+
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="/static/js/booking.js"></script>
+<!-- <script src="/static/js/text.js"></script> -->
+
+{% endblock %}

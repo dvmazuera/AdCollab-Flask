@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+	<div id="add_listing">
+        <h1>New Listing Form</h1>
+        <form action="/process_new_listing" method="POST">
+            Business Name<br>
+            <input type="text" name="business" required><br>
+
+            Phone<br>
+            <input type="text" name="phone" required><br>
+
+            Address<br>
+            <input type="text" name="address" required><br>
+
+            Zipcode<br>
+            <input type="text" name="zipcode" required><br>
+
+            Advertisement Space Dimensions:<br>
+            Height: <input type="text" name="height" required><br>
+            Width: <input type="text" name="width" required><br>
+
+            Photo<br>
+            <input type="text" name="photo"><br>
+
+            Description<br>
+            <input type="text" name="description">
+            <br>
+            <br>
+            <input type="submit" name="add_user"> <br>
+        </form>
+	</div>
+    <br>
+
+    <!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Terms and Conditions </button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+    
+
+
+{% endblock %}
