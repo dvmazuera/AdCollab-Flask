@@ -1,3 +1,107 @@
+h1, h2, h3, .navbar-brand { font-family: "Roboto", sans-serif; }
+
+p { 
+  font-family: "Roboto", sans-serif;
+  width: 50%;
+  margin: 1em;
+  padding: 1em; 
+}
+
+
+.navbar-default {
+  background-color: #e67e22;
+  border-color: #d35400;
+}
+.navbar-default .navbar-brand {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #ffe6d1;
+}
+.navbar-default .navbar-text {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #ffe6d1;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu {
+  background-color: #e67e22;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+  color: #ffe6d1;
+  background-color: #d35400;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li.divider {
+  background-color: #d35400;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+  color: #ffe6d1;
+  background-color: #d35400;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #ffe6d1;
+  background-color: #d35400;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #ffe6d1;
+  background-color: #d35400;
+}
+.navbar-default .navbar-toggle {
+  border-color: #d35400;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #d35400;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ecf0f1;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ecf0f1;
+
+}
+.navbar-default .navbar-link {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-link:hover {
+  color: #ffe6d1;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ecf0f1;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffe6d1;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffe6d1;
+    background-color: #d35400;
+  }
+}
+
+
+
+
 
 .img {
     position: relative;
@@ -19,15 +123,6 @@
   text-align: center;
 }
 
-
-h1, h2, h3, .navbar-brand { font-family: "Roboto", sans-serif; }
-
-p { 
-  font-family: "Roboto", sans-serif;
-  width: 50%;
-  margin: 1em;
-  padding: 1em; 
-}
 
 
 

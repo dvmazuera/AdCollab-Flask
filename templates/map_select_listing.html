@@ -1,58 +1,57 @@
 {% extends 'base.html' %}
 {% block head %}
 
-
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBywdmqR6C_Nc1Cq0BS65r4KX0Ai2AUZ14"></script>
-    <script src="https://code.jquery.com/jquery.js"></script>
-   <!--  <script src="/static/js/mapstyles.js"></script> -->
-    <style> #diana-map {height:500px; width:500px;} </style>
-    <script src="/static/js/map.js"></script>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBywdmqR6C_Nc1Cq0BS65r4KX0Ai2AUZ14"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
+<style> #diana-map {height:500px; width:500px;} </style>
+<script src="/static/js/map.js"></script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 
 {% endblock %}
 {% block content %}
 
-  <h1>Listings</h1>
-      <h2> Select a Zipcode: </h2>
 
-           Enter zipcode:
-        <input name="searchTxt_name" type="text" maxlength="512" id="searchTxt" class="searchField"/>
-        <button id="searchButton">Submit</button><br><br>
+<h1>Listings</h1>
+<h2> Select a Zipcode: </h2>
 
-        <div id="diana-map" ></div><br><br>
+<div>
+    Enter zipcode:
+    <input name="searchTxt_name" type="text" maxlength="512" id="searchTxt" class="searchField"/>
+    <button id="searchButton">Submit</button><br><br>
 
-            Price Range: <br>
-            Min: $ <input type="text" size="5" name="min_price" id="min_price"><br>
-            Max: $ <input type="text" size="5" name="max_price" id="max_price"><br>
-            <br>
-            Ad Dimensions: <br>
-            Height: <input type="text" size="2" name="ad_height" id="ad-height"> ft. <br> 
-            Width: <input type="text" size="2" name="ad_width" id="ad-width"> ft. <br> 
+    <div id="diana-map" ></div><br><br>
 
-            <button id="filter_search">Submit</button> 
-           <!--  Disable the button unless ALL are filled out - DO LATER ! -->
+        Price Range: <br>
+        Min: $ <input type="text" size="5" name="min_price" id="min_price"><br>
+        Max: $ <input type="text" size="5" name="max_price" id="max_price"><br>
+        <br>
+        Ad Dimensions: <br>
+        Height: <input type="text" size="2" name="ad_height" id="ad-height"> ft. <br> 
+        Width: <input type="text" size="2" name="ad_width" id="ad-width"> ft. <br> 
+
+        <button id="filter_search">Submit</button> 
+       <!--  Disable the button unless ALL are filled out - DO LATER ! -->
+</div>
 
 
-    <script>
-        var map;
-        var markers;
-        var bindInfoWindow;
+<script>
+    var map;
+    var markers;
+    var bindInfoWindow;
 
-        $("#searchButton").on("click", function(){
-            zipcode_zoom( document.getElementById("searchTxt").value)
-        });
-       
+    $("#searchButton").on("click", function(){
+        zipcode_zoom( document.getElementById("searchTxt").value)
+    });
+   
 
-        $("#filter_search").on("click", function(){
-            var min_price = document.getElementById("min_price").value;
-            var max_price = document.getElementById("max_price").value;
-            var ad_height = document.getElementById("ad-height").value;
-            var ad_width = document.getElementById("ad-width").value
-            filter_search(min_price, max_price, ad_height, ad_width)
-        });
-    </script>
+    $("#filter_search").on("click", function(){
+        var min_price = document.getElementById("min_price").value;
+        var max_price = document.getElementById("max_price").value;
+        var ad_height = document.getElementById("ad-height").value;
+        var ad_width = document.getElementById("ad-width").value
+        filter_search(min_price, max_price, ad_height, ad_width)
+    });
+</script>
 
 
 <script> google.maps.event.addDomListener(window, 'load', initMap); </script>

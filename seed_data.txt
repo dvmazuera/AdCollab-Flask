@@ -1,5 +1,5 @@
 Flowers By Carlos|150 Valencia St, San Francisco, CA 94110|FlowersCarlos.jpg|+14158246555|37.7702006|-122.4225669|1|flowers_carlos_wall.jpg
-Sheyna's Thirft Store|280 Valencia St, San Francisco, CA 94110|user_thrift.jpg|+14158759370|37.7685006|-122.4225099|2|Shenas_thrift_wall.jpg
+Sheyna's Thrift Store|280 Valencia St, San Francisco, CA 94110|user_thrift.jpg|+14158759370|37.7685006|-122.4225099|2|Shenas_thrift_wall.jpg
 Philz Coffee|3101 24th St, San Francisco, CA 94110|philz.jpg|+14158759370|37.7523971028|-122.414263665|test_wall1.jpg|Hello! The wall listed here is a ... 
 Samiramis Imports|3139 Mission St, San Francisco, CA 94110|SImports.jpg|+14153683802|37.765214|-122.419862||
 Dolores Barber|19th & Dolores St, San Francisco, CA 94114|DoloresBarber.jpg|+14158312700|37.760856|-122.425869||

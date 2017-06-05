@@ -4,72 +4,64 @@
 
 
 <h1> User information for: {{ user.first_name }} {{ user.last_name }}</h1>
-
-Email: {{ user.email }}<br>
-
-Phone Number: {{ user.phone }}
+Email: {{ user.email }}
+<div>Phone Number: {{ user.phone }}</div>
 
 <p>
-<img src='{{ user_photo }}'/>
-</p>
-
-{{ user.description }}
-
-<p>
-User Ad: <br>
-<img src='{{ user_ad }}' width="50%" height="50%" />
+	<img src='{{ user_photo }}'/>
+	</p> {{ user.description }}<p>
+	User Ad: <br>
+	<img src='{{ user_ad }}' width="50%" height="50%" />
 </p>
 
 
 
 <button onclick="window.location.href='/new_listing'">Listings Posted</button>
-<!-- option to delete listing  -->
 
-<button onclick="window.location.href='/purchase_history'">Purchase History</button>
-<br>
+<button onclick="window.location.href='/purchase_history'">Purchase History</button><br>
 
-<button onclick="window.location.href='/purchase_history'">View Favorite Listings</button>
-<br>
+<button onclick="window.location.href='/purchase_history'">View Favorite Listings</button><br>
 
 
 
-<br>
+<div>
 <form action='/update_account' method="POST">
-<h3>Update Information:</h3><br>
-(please fill out all fields)<br>
-Email: 
-<input type="text" name= "email" required="True">
-Password: 
-<input type="password" name="password" required="True">
-<input type='submit' value="Update">
+	<h3>Update Information:</h3><br>
+	(please fill out all fields)<br>
+	Email: 
+	<input type="text" name= "email" required="True">
+	Password: 
+	<input type="password" name="password" required="True">
+	<input type='submit' value="Update">
 </form>
-<br>
-
+</div>
+<div>
 <form action='/update_account' method="POST">
-Change Phone Number:<br>
-<input type="text" name="phone" required>
-<input type='submit' value="Update">
+	Change Phone Number:<br>
+	<input type="text" name="phone" required>
+	<input type='submit' value="Update">
 </form>
-
-<br>
+</div>
+<div>
 <form action='/update_account' method="POST">
-Change Profile Photo:<br>
-<input type="text" name="photo">
-<input type="submit" value="Update">
+	Change Profile Photo:<br>
+	<input type="text" name="photo">
+	<input type="submit" value="Update">
 </form>
-<br>
+</div>
+<div>
 <form action='/update_account' method="POST">
-Change Description:<br>
-<input type="text" name="description">
-<input type="submit" value="Update">
+	Change Description:<br>
+	<input type="text" name="description">
+	<input type="submit" value="Update">
 </form>
-<br>
+</div>
 
-<p>
+<div>
     <form action='/' method="POST">
     <input type='submit' value='DELETE ACCOUNT'>
     </form>
-</p>
+</div>
 
 
 
