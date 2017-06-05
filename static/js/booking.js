@@ -80,22 +80,34 @@ function startDrag(e) {
                 return false;
                 
             }
-            function dragDiv(e) {
-                if (!drag) {return};
-                if (!e) { var e= window.event};
-                // var targ=e.target?e.target:e.srcElement;
-                // move div element
-                targ.style.left=coordX+e.clientX-offsetX+'px';
-                targ.style.top=coordY+e.clientY-offsetY+'px';
-                return false;
-            }
-            function stopDrag() {
-                drag=false;
-            }
-            window.onload = function() {
-                document.onmousedown = startDrag;
-                document.onmouseup = stopDrag;
-            }
+function dragDiv(e) {
+    if (!drag) {return};
+    if (!e) { var e= window.event};
+    // var targ=e.target?e.target:e.srcElement;
+    // move div element
+    targ.style.left=coordX+e.clientX-offsetX+'px';
+    targ.style.top=coordY+e.clientY-offsetY+'px';
+    return false;
+}
+function stopDrag() {
+    drag=false;
+}
+
+
+$('#drag-modal').on('click', function(){
+    document.onmousedown = startDrag;
+    document.onmouseup = stopDrag;
+});
+
+
+
+
+
+
+// window.onload = function() {
+//     document.onmousedown = startDrag;
+//     document.onmouseup = stopDrag;
+// }
 
 
 

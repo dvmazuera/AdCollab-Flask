@@ -524,6 +524,7 @@ def request_email(rent_price, start_month, end_month,ad_height, ad_width, reques
 
 
 
+
 @app.route("/book_listing")
 def book_listings():
     """Show list of listings."""

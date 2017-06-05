@@ -3,158 +3,163 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div>
-<a href="/account_info">{{ user.email }} {{ user.user_id }}</a> <br>
-</div>
-
-<div>
-  <h1>Listing Info</h1>
-  <img src='{{ listing_owner_photo }}' width="50%" height="50%"/>
-  <br>
-  <p>
-  <img src='{{ listing_image }}' width="50%" height="50%" /></p>
+<div class= "container">
 
 
-  <div> 
-    <h2>Basic Info: </h2>
-
-        Business Name:<br>{{ listing.business }}<br><br>
-
-        Phone:<br>{{ listing.phone }}<br><br>
-
-        Address:<br>{{ listing.address }}<br><br>
-
-        Advertisement Space Dimensions:<br>
-        Height: {{ listing.height_max }}<br>
-        Width: {{ listing.width_max }}<br><br>
-
-        Price<br>
-        $ {{ listing.price }} / month<br><br>
-
-  </div>
-</div>
-
-<div>
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Click to See Listing Space </button>
-  <!-- Modal -->
-  <div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content"> 
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">{{ listing.business}}</h4>
-          </div>
-              <div id="container">
-                  <div id="main_image" class="listing">"Drag the Image Below"</div>
-                  <img src="/static/img/flower_shop_SIGN.jpg" alt="drag-and-drop image script" 
-                   title="drag-and-drop image script" class="dragme">
-              </div>
-      </div>
-        
-    </div>
-  </div>
-</div>
-
-
-
-<div>
-      <h1> Select This Listing</h1>
-      <form action="/process_booking" id="calendar-form" method="POST">
-
-            Start Date:
-              <select name="start_date" id="start_date">
-                <option value="july17">July 2017</option>
-                <option value="august17">August 2017</option>
-                <option value="september17">September 2017</option>
-                <option value="october17"17>October 2017</option>
-                <option value="november17">November 2017</option>
-                <option value="december17">December 2017</option>
-                <option value="january18">January 2018</option>
-                <option value="february18">February 2018</option>
-                <option value="march18">March 2018</option>
-              </select>
-
-
-            End Date:
-              <select name="end_date" id="end_date">
-                 <option value="july17">July 2017</option>
-                <option value="august17">August 2017</option>
-                <option value="september17">September 2017</option>
-                <option value="october17"17>October 2017</option>
-                <option value="november17">November 2017</option>
-                <option value="december17">December 2017</option>
-                <option value="january18">January 2018</option>
-                <option value="february18">February 2018</option>
-                <option value="march18">March 2018</option>
-                <option value="april18">April 2018</option>
-                <option value="may18">May 2018</option>
-              </select>
-
-            <div>
-              <br> Price<br>
-              $ {{ listing.price }} / month<br><br>
-            </div>
-            <div>
-              <input type="submit" id="calc-months" class="btn btn-primary input-sm" value="Calculate"><br><br>
-              <label>Total Price for months selected: $  </label> <span id="rent-price-result" data-listing-price="{{ listing.price }}" name="rent-price-result">&nbsp;</span>
-            </div>
-  </form>
+  <div class="row">
+    
+    <div class="col-md-6">
         <div>
-          <h2> Ad Dimensions: </h2> <br>
-          <label> Height:<input type="text" size="5" name="ad_height" id="ad-height" value="5" required>ft </label> <br>
-          <label> Width:<input type="text" size="5" name="ad_width" id="ad-width" value= "4" required>ft </label> <br> <br>
+        <a href="/account_info">{{ user.email }} {{ user.user_id }}</a> <br>
         </div>
-</div>
+              <img src='{{ listing_owner_photo }}' width="50%" height="50%"/>
+              <br>
+              <div> 
+                <h1>Listing Info</h1>
+
+                    Business Name:  {{ listing.business }}<br><br>
+
+                    Phone:  {{ listing.phone }}<br><br>
+
+                    Address:  {{ listing.address }}<br><br>
+
+                    Advertisement Space Dimensions:<br>
+                    Height: {{ listing.height_max }} ft<br>
+                    Width: {{ listing.width_max }} ft<br><br>
+              </div>
+
+        <div>
+                  <h2> Select This Listing</h2>
+                <h4> Price: $ {{ listing.price }} / month </h4>
+      
+                  <form action="/process_booking" id="calendar-form" method="POST">
+                     <div>
+
+                        Start Date:
+                          <select name="start_date" id="start_date">
+                            <option value="july17">July 2017</option>
+                            <option value="august17">August 2017</option>
+                            <option value="september17">September 2017</option>
+                            <option value="october17"17>October 2017</option>
+                            <option value="november17">November 2017</option>
+                            <option value="december17">December 2017</option>
+                            <option value="january18">January 2018</option>
+                            <option value="february18">February 2018</option>
+                            <option value="march18">March 2018</option>
+                          </select>
 
 
+                        End Date:
+                          <select name="end_date" id="end_date">
+                             <option value="july17">July 2017</option>
+                            <option value="august17">August 2017</option>
+                            <option value="september17">September 2017</option>
+                            <option value="october17"17>October 2017</option>
+                            <option value="november17">November 2017</option>
+                            <option value="december17">December 2017</option>
+                            <option value="january18">January 2018</option>
+                            <option value="february18">February 2018</option>
+                            <option value="march18">March 2018</option>
+                            <option value="april18">April 2018</option>
+                            <option value="may18">May 2018</option>
+                          </select>
+                    </div>
+                    <br>
+                    <br>
 
-<div>
-  <!-- Trigger the modal with a button -->
-  <button id="email-modal-button" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modal">Request This Listing!</button>
-  <!-- Modal -->
-  <div id="Modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+                        <div>
+                          <label>Total Price for months selected: $  </label> <span id="rent-price-result" data-listing-price="{{ listing.price }}" name="rent-price-result">&nbsp;</span>  <input type="submit" id="calc-months" class="btn btn-primary input-sm" value="Calculate"><br><br>
+                        </div>
+              </form>
+          </div>
 
-      <!-- Modal content-->
-      <div class="modal-submit-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Review Below</h4>
-        </div>
-        <div class="modal-body">
-          <p> You are just one step away from booking your ad listing! Next we will be contacting the business owner to confirm you're request. The dates selected by your request will remain blocked until a confirmation/decline is posted on our site.</p>
-          <p> An email will be sent to {{ listing.business }} with the following information. Please review and double check that all parameters have been correctly selected.</p>
-          <h5> Request Detail: </h5>
-          <li id="modal-rent-price"> Total Booking Price: </li>
-          <li id="modal-start-month"> Start Month: </li>
-          <li id="modal-end-month"> End Month: </li>
-          <li id="modal-ad-height"> Ad Height: </li>
-          <li id="modal-ad-width"> Ad Width: </li>
-          <h5> User Requesting Listing</h5>
-          <p><img id="requester-photo" src='{{ user_photo }}' width="50%" height="50%"/> </p>
-          <li id="requester-name"> {{ user.first_name }} {{ user.last_name }}</li>
-          <li id="requester-phone"> {{ user.phone }}</li>
-          <li id="requester-email"> {{ user.email }}</li>
-          <h5> Optional area to comment: Use AdCollab's default message or customize your own!</h5>
-          <textarea name="comment" id="requester-comment" form="usrform">Hi! My name is {{user.first_name}} {{user.last_name}} and I am interested in booking your ad listing! </textarea>
-            <li id="listing_email" hidden> dvmcoupons@gmail.com</li>
-            <li id="listing_business" hidden> {{ listing.business }}</li>
-            <li id="listing_name" hidden>Sheyna</li>
 
-        </div>
-        <div class="modal-footer"> <h4>Send your request!</h4>
-          <button type="button" id="email-submit-button" class="btn btn-default" data-dismiss="modal">Submit</button>
-        </div>
+                  <div>
+          <!-- Trigger the modal with a button -->
+          <button id="email-modal-button" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modal">Request This Listing!</button>
+          <!-- Modal -->
+              <div id="Modal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
 
-      </div>
+                  <!-- Modal content-->
+                  <div class="modal-submit-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Review Below</h4>
+                            </div>
+                        <div class="modal-body">
+                          <p> You are just one step away from booking your ad listing! Next we will be contacting the business owner to confirm you're request. The dates selected by your request will remain blocked until a confirmation/decline is posted on our site.</p>
+                          <p> An email will be sent to {{ listing.business }} with the following information. Please review and double check that all parameters have been correctly selected.</p>
+                          <h5> Request Detail: </h5>
+                          <li id="modal-rent-price"> Total Booking Price: </li>
+                          <li id="modal-start-month"> Start Month: </li>
+                          <li id="modal-end-month"> End Month: </li>
+                          <li id="modal-ad-height"> Ad Height: </li>
+                          <li id="modal-ad-width"> Ad Width: </li>
+                          <h5> User Requesting Listing</h5>
+                          <p><img id="requester-photo" src='{{ user_photo }}' width="50%" height="50%"/> </p>
+                          <li id="requester-name"> {{ user.first_name }} {{ user.last_name }}</li>
+                          <li id="requester-phone"> {{ user.phone }}</li>
+                          <li id="requester-email"> {{ user.email }}</li>
+                          <h4> Optional Comment: </h4>
+                          <h6>Use AdCollab's default message or customize your own!</h6>
+                          <textarea name="comment" id="requester-comment" rows="4" cols="50" form="usrform">Hi! My name is {{user.first_name}} {{user.last_name}} and I am interested in booking your ad listing! </textarea>
+                            <li id="listing_email" hidden> dvmcoupons@gmail.com</li>
+                            <li id="listing_business" hidden> {{ listing.business }}</li>
+                            <li id="listing_name" hidden>Sheyna</li>
+                        </div>
+                        <div class="modal-footer"> <h4>Send your request!</h4>
+                          <button type="button" id="email-submit-button" class="btn btn-default" data-dismiss="modal">Submit</button>
+                        </div>
+                  </div>
+
+                </div>
+              </div>
+         </div>
 
     </div>
+
+
+<div class="col-md-6">
+             <img src='{{ listing_image }}' width="100%" height="100%" /></p>
+            <div>
+                    <div>
+                      <h4> Ad Dimensions: </h4>
+                      <label> Height:<input type="text" size="5" name="ad_height" id="ad-height" value="5" required>ft </label> <br>
+                      <label> Width:<input type="text" size="5" name="ad_width" id="ad-width" value= "4" required>ft </label> <br> <br>
+                    </div>
+            </div>
+
+        <div>
+          <!-- Trigger the modal with a button -->
+          <button id="drag-modal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Click to See Listing Space </button>
+          <!-- Modal -->
+          <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content"> 
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{ listing.business}}</h4>
+                      </div>
+                      <div id="container">
+                          <div id="main_image" class="listing">"Drag the Image Below"</div>
+                          <img src="/static/img/flower_shop_SIGN.jpg" alt="drag-and-drop image script" 
+                           title="drag-and-drop image script" class="dragme">
+                      </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
   </div>
+
 </div>
 
 
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="/static/js/booking.js"></script>
 
 
 <script>
@@ -204,8 +209,6 @@ $("#email-submit-button").on('click', function(){
 
 
 
-<script src="http://code.jquery.com/jquery.js"></script>
-<script src="/static/js/booking.js"></script>
 <!-- <script src="/static/js/ad_modal.js"></script> -->
 <!-- <script src="/static/js/text.js"></script> -->
 
