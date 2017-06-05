@@ -3,16 +3,22 @@
 {% block content %}
 
 
+<div class= "container">
 
-<h1>Ad Collab</h1>
+	<div class="row">
+		<div class="col-md-6">
+			<h1>Advertise</h1>
+			<img class="img-rounded" src="/static/img/ooh_ad_image.jpg" height=260px width=285px><br><br>
+			<button class="btn btn-info btn-lg" onclick="window.location.href='/advertise'"> Start Advertising!</button>
+		</div>
 
-<div>
-	<h1>Advertise</h1>
-	<button onclick="window.location.href='/advertise'">Find a spot to Advertise!</button>
-</div>
-<div>
-	<h1>Create a Listing</h1>
-	<button onclick="window.location.href='/new_listing'">Create A New Listing!</button>
+		<div class="col-md-6">
+			<h1>Create a Listing</h1>
+			<img class="img-rounded" src="/static/img/sign_up2.jpg" height=260px width=285px><br><br>
+			<button class="btn btn-info btn-lg" onclick="window.location.href='/new_listing'">Create A New Listing!</button>
+		</div>
+	</div>
+
 </div>
 
 
