@@ -17,7 +17,7 @@ function initMap() {
       });
 
       var infoWindow = new google.maps.InfoWindow({
-          width: 150
+          width: 100
       });
 
        // Retrieving the map information with AJAX
@@ -122,7 +122,7 @@ function addListingMarkers(listings){
       });
 
       var infoWindow = new google.maps.InfoWindow({
-          width: 150
+          width: 100
       });
       
       var listing, marker, html, markerCluster;
