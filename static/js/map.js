@@ -17,7 +17,7 @@ function initMap() {
       });
 
       var infoWindow = new google.maps.InfoWindow({
-          width: 100
+          width: 80 
       });
 
        // Retrieving the map information with AJAX
@@ -41,7 +41,7 @@ function initMap() {
             // hold off on the image in a database --- TO DO LATER
             html = (
                 '<div class="window-content">' +
-                    '<img src="/static/img/star.jpg" alt="listing" style="width:150px;" class="thumbnail">' +
+                    '<img src="/static/img/ooh_ad_image.jpg" alt="listing" style="width:150px;" class="thumbnail">' +
                     '<p><b>Business Name: </b>' + listing.business + '</p>'+
                     '<p><b>Address: </b>' + listing.address + '</p>' +
                     '<p><b>Ad Height: </b>' + listing.heightmax + '</p>' +
@@ -149,7 +149,7 @@ function addListingMarkers(listings){
                   '<p><b>Ad Height: </b>' + listing.heightmax + '</p>' +
                   '<p><b>Ad Width: </b>' + listing.widthmax + '</p>' +
                   '<p><b>Price: $ </b>' + listing.price + '</p>' +
-                  '<button onclick="window.location.href=\'/listings/' + key + '\'">Select Listing</button>' + 
+                  '<button onclick="window.location.href=\'/listing/' + key + '\'">Select Listing</button>' + 
               '</div>');
 
            bindInfoWindow(marker, map, infoWindow, html);
