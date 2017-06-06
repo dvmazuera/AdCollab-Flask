@@ -41,7 +41,7 @@ function initMap() {
             // hold off on the image in a database --- TO DO LATER
             html = (
                 '<div class="window-content">' +
-                    '<img src="/static/img/ooh_ad_image.jpg" alt="listing" style="width:150px;" class="thumbnail">' +
+                    '<img src="/static/img/AdCollab_logo2.png" alt="listing" style="width:150px;" class="thumbnail">' +
                     '<p><b>Business Name: </b>' + listing.business + '</p>'+
                     '<p><b>Address: </b>' + listing.address + '</p>' +
                     '<p><b>Ad Height: </b>' + listing.heightmax + '</p>' +
@@ -143,7 +143,7 @@ function addListingMarkers(listings){
           // Define the content of the infoWindow
           html = (
               '<div class="window-content">' +
-                  '<img src="google-maps-demo/static/img/polarbear.jpg" alt="listing" style="width:150px;" class="thumbnail">' +
+                  '<img src="/static/img/AdCollab_logo2.png" alt="listing" style="width:150px;" class="thumbnail">' +
                   '<p><b>Business Name: </b>' + listing.business + '</p>' +
                   '<p><b>Address: </b>' + listing.address + '</p>' +
                   '<p><b>Ad Height: </b>' + listing.heightmax + '</p>' +
