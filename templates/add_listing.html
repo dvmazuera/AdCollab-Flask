@@ -1,28 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class= "container">
+<div id ="container-full" class= "container-fluid">
 
+  <div id="pull-down-listing" class="row">
 	<div id="add_listing" class="col-md-6">
         <h1>New Listing Form</h1>
         <form action="/process_new_listing" method="POST">
-            Business Name<br>
+            Business Name:<br>
             <input type="text" name="business" required><br>
 
-            Phone<br>
+            Phone:<br>
             <input type="text" name="phone" required><br>
 
-            Address<br>
+            Address:<br>
             <input type="text" name="address" required><br>
 
-            Zipcode<br>
+            Zipcode:<br>
             <input type="text" name="zipcode" required><br>
 
-            Advertisement Space Dimensions:<br>
+            Ad Space Dimensions:<br>
             Height: <input type="text" size="5" name="height" required> ft <br>
             Width: <input type="text" size="5"  name="width" required> ft <br>
 
-            Price<br>
+            Price:<br>
             $ <input type="text" size="8" name="photo"> / month<br>
 
             Description<br>
@@ -30,7 +31,8 @@
             <br>
 
                 <!-- Trigger the modal with a button -->
-                <button type="button" class="btn btn-danger btn-default" data-toggle="modal" data-target="#myModal">Open Terms and Conditions </button>
+                <button type="button" class="btn btn-warning btn-default" data-toggle="modal" data-target="#myModal">Open Terms and Conditions </button>
+                <br> <br>
                 <!-- Modal -->
                 <div id="myModal" class="modal fade" role="dialog">
                   <div class="modal-dialog">
@@ -57,7 +59,7 @@
   <div class="col-md-6">
       <img class="img-rounded" src="/static/img/photo_camera.jpg" height=260px width=285px><br><br>
       <button class="btn btn-info btn-default" onclick=""> Upload Photo</button>
-    </div>
+  </div>
     
 </div>
 

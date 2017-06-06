@@ -1,40 +1,52 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>OOH Marketing</h1>
 
-	<div id="add_user">
-        <h1>Add User Form</h1>
-        <form action="/process_new_user" method="POST">
-            First Name<br>
-            <input type="text" name="fname" required><br>
+<div id ="container-full" class= "container-fluid">
+    <div id="pull-down-listing" class="row">
 
-            Last Name<br>
-            <input type="text" name="lname" required><br>
+        <div class="col-md-6"
+            	<div id="add_user">
+                    <h1>Add User Form</h1>
+                    <form action="/process_new_user" method="POST">
+                        First Name:<br>
+                        <input type="text" name="fname" required><br>
 
-            Email<br>
-            <input type="text" name="email" required><br>
+                        Last Name:<br>
+                        <input type="text" name="lname" required><br>
 
-            Password<br>
-            <input type="text" name="password" required><br>
+                        Email:<br>
+                        <input type="text" name="email" required><br>
 
-            Phone<br>
-            <input type="text" name="phone" required><br>
+                        Password:<br>
+                        <input type="text" name="password" required><br>
 
-            Zipcode<br>
-            <input type="text" name="zipcode" required><br>
+                        Phone:<br>
+                        <input type="text" name="phone" required><br>
 
-            Photo<br>
-            <input type="text" name="photo"><br>
+                        Zipcode:<br>
+                        <input type="text" name="zipcode" required><br>
 
-            Description<br>
-            <input type="text" name="description">
+                        Photo:<br>
+                        <input type="text" name="photo"><br>
 
-            <br>
-            <br>
-            <input type="submit" name="add_user">
-        </form>
-	</div>
+                        Description:<br>
+                        <input type="text" name="description">
+
+                        <br>
+                        <br>
+                        <input class="btn btn-info btn-lg" type="submit" name="add_user">
+                    </form>
+        </div>
+
+
+    <div class="col-md-6">
+          <img class="img-rounded" src="/static/img/photo_camera.jpg" height=260px width=285px><br><br>
+          <button class="btn btn-info btn-default" onclick=""> Upload Photo</button>
+    </div>
+
+    </div>
+</div>
 
 
 {% endblock %}
