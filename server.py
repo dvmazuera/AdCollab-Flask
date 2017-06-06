@@ -76,11 +76,11 @@ def process_login():
             password = password.encode('utf8')
             hashedpass = user.password.encode('utf8') 
             session["user"] = user.user_id
-            flash("Thank you for logging In")
+            print("Thank you for logging In")
             return redirect("/entry_page")
 
         elif password != user.password:
-             flash("Incorrect password Try again")
+             print("Incorrect password Try again")
              return redirect("/")
 
 
@@ -90,7 +90,7 @@ def logout():
     """Log out."""
 
     del session["user"]
-    flash("Logged Out.")
+    print("Logged Out.")
     return redirect("/")
 
 

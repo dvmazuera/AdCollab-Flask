@@ -139,8 +139,8 @@ p {
 }
 
 #login_user{
-    text-align: left;
-    padding-left: 180px;
+    text-align: center;
+    padding-left: 10px;
    /* padding-right: 180px;*/
 }
 
@@ -188,7 +188,7 @@ p {
 
  .dragme{
       position:relative;
-      width: 120px;
+      width: 170px;
       height: 100px;
       cursor: move;
       border: 1px solid gray;
@@ -199,11 +199,6 @@ p {
       border: 1px solid #000;
     }rrr
 
-#send-email-modal {
-    position: relative;
-    padding-left: 50px;
-    padding-right: 50px;
-}
 
 .modal-content{
     width:682px;
@@ -212,7 +207,7 @@ p {
 
 .modal-submit-content{
     width:682px;
-    height:1020px;
+    height:900px;
     position: relative;
     background-color: #fff;
     -webkit-background-clip: padding-box;
