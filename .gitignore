@@ -1,3 +1,2 @@
-model_project.pyc
-server.pyc
+*.pyc
 .DS_Store

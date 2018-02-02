@@ -11,7 +11,7 @@ def load_users():
     """Load users from u.user into database."""
 
     print "Users"
-    for i, row in enumerate(open("user_data.csv")):
+    for i, row in enumerate(open("data/user_data.csv")):
         row = row.rstrip()
         user_photo, username, first_name, last_name, email, password, phone, ad_image, state, description= row.split(",")
 
@@ -35,7 +35,7 @@ def load_listings():
     """Load movies from u.item into database."""
 
     print "Listings"
-    for i, row in enumerate(open("seed_data.txt")):
+    for i, row in enumerate(open("data/seed_data.txt")):
         row = row.rstrip()
 
         try:
@@ -66,7 +66,7 @@ def load_numbers():
     """Load movies from u.item into database."""
 
     print "Listings"
-    for i, row in enumerate(open("number_data.txt")):
+    for i, row in enumerate(open("data/number_data.txt")):
         row = row.rstrip()
         #need to find the already made seeded table for listings and choose to fill in the "null" columns in THAT table
         listing = Listings.query.filter_by(listing_id=(i+1)).one()
@@ -91,7 +91,7 @@ def load_numbers():
     """Load movies from u.item into database."""
 
     # print "Listings"
-    for i, row in enumerate(open("number_data.txt")):
+    for i, row in enumerate(open("data/number_data.txt")):
         row = row.rstrip()
         #need to find the already made seeded table for listings and choose to fill in the "null" columns in THAT table
         listing = Listings.query.filter_by(listing_id=(i+1)).one()
