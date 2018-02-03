@@ -5,7 +5,7 @@ AdCollab is the Airbnb for outdoor ad space – enabling building owners to post
 
 Users are able to search for listings in their area by zipcode, with the option to filter further by price and ad dimensions to find the perfect outdoor advertising space in their area. Best of all, users get to preview how their uploaded ads will appear on the listing’s ad space prior to making a selection! 
 
-AdCollab helpd the community two-fold: 1) ads help bring small businesses more foot traffic and 2) the profits from local ad rentals can help business owners in underrepresented communities keep their businesses up and help stall the steady trend towards gentrification.
+AdCollab helps the community two-fold: 1) ads help bring small businesses more foot traffic and 2) the profits from local ad rentals can help business owners in underrepresented communities keep their businesses up and help stall the steady trend towards gentrification.
 
 [Click Below for YouTube DEMO][![AdCollab - Flask App](http://bit.ly/2GFAOcw)](https://youtu.be/Kn7PAk4YUso "AdCollab - Flask App")
 
