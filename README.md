@@ -44,7 +44,7 @@ Users filter for listings in their area by zipcode, with the option to filter fu
 
 Google Maps API - Yelp API
 
-![Search Map](http://bit.ly/2FEA467)
+![Search Map]( http://bit.ly/2FEA467 )
 
 
 ##### Preview Your Ad -
